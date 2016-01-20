@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['columnchart']}]}"></script>
+    <script type="text/javascript">
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,    400],
+          ['2005',  1170,    460],
+          ['2006',   660,   1120],
+          ['2007',  1030,    540],
+          ['2009',  1120,    580],
+          ['2010',  1200,    500],
+          ['2011',  1250,    490],
+        ]);
+        var options = {
+          width: 1600,
+          height: 800,
+          title: 'Company Performance'
+        }
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
