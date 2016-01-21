@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['bar'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('string', 'Year');
+        dataTable.addColumn('number', 'Sales');
+        dataTable.addColumn('number', 'Expenses');
+        dataTable.addColumn('number', 'Profit');
+        dataTable.addRows([
+          ['2004',  1000,    400,  600],
+          ['2005',  1170,    460,  710],
+          ['2006',   660,   1120,  560],
+          ['2007',  1030,    540,  490],
+          ['2009',  1120,    580,  540],
+          ['2010',  1200,    500,  700],
+          ['2011',  1250,    490,  760],
+        ]);
+        var options = {
+          width: 1600,
+          height: 800,
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017'
+          },
+          colors: ['#1b9e77', '#d95f02', '#7570b3'],
+          vAxis: {format: 'decimal'},
+        }
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(dataTable, google.charts.Bar.convertOptions(options));
+
+        // Format switch code, no jQuery!
+        var btns = document.getElementById('btn-group');
+        btns.onclick = function (e) {
+          if (e.target.tagName === 'BUTTON') {
+            options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+            chart.draw(dataTable, google.charts.Bar.convertOptions(options));
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+    <div id="btn-group">
+      <button class="button button-blue" id="none">No Format</button>
+      <button class="button button-blue" id="scientific">Scientific Notation</button>
+      <button class="button button-blue" id="decimal">Decimal</button>
+      <button class="button button-blue" id="short">Short</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('string', 'Year');
+        dataTable.addColumn('number', 'Sales');
+        dataTable.addColumn('number', 'Expenses');
+        dataTable.addColumn('number', "Threshold 1");
+        dataTable.addColumn('number', "Threshold 2");
+        dataTable.addRows([
+          ['2004',  1000,    400,  500,  1200],
+          ['2005',  1170,    460,  500,  1200],
+          ['2006',   660,   1120,  500,  1200],
+          ['2007',  1030,    540,  500,  1200],
+          ['2009',  1120,    580,  500,  1200],
+          ['2010',  1200,    500,  500,  1200],
+          ['2011',  1250,    490,  500,  1200],
+        ]);
+        var series = {};
+        series[2] = {type: 'line'};
+        series[3] = {type: 'line'};
+        var options = {
+          width: 1600,
+          height: 800,
+          title: 'Company Performance',
+          seriesType: 'bars',
+          series: series,
+          //theme: 'material'
+        }
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(dataTable, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
