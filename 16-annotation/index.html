@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('string', 'Year');
+        dataTable.addColumn('number', 'Sales');
+        dataTable.addColumn({type: 'string', role: 'annotation'});
+        dataTable.addRows([
+          ['2004',  1000, '1000'],
+          ['2005',  1170, '1170'],
+          ['2006',   660,  '660'],
+          ['2007',  1030, '1030'],
+          ['2009',  1120, '1120'],
+          ['2010',  1200, '1200'],
+          ['2011',  1250, '1250'],
+        ]);
+        var options = {
+          width: 1000,
+          height: 600,
+          title: 'Company Performance',
+          annotations: {
+            alwaysOutside: true,
+            textStyle: {
+              // fontSize: 14,
+              color: '#000',
+              // auraColor: 'none'
+            }
+          },
+          //curveType: 'function',
+          //pointSize: 7
+        }
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(dataTable, options);
+      }
+      // Point customization: https://developers.google.com/chart/interactive/docs/points
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
