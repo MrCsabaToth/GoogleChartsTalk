@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // https://developers.google.com/chart/interactive/docs/gallery/genericimagechart
+      // http://chart.apis.google.com/chart?cht=bhs&chs=150x30&chd=t:70&chm=r,ff0000,0,0.0,0.5%7Cr,ffff00,0,0.5,0.75%7Cr,00A000,0,0.75,1.0%7Cr,000000,0,0.8,0.81&chco=000000&chbh=10
+      google.charts.load('current', { 'packages': ['imagechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('number');
+        dataTable.addColumn('number');
+        dataTable.addColumn('number');
+        dataTable.addRows([
+          [0, 0.0, 0.5],
+          [0, 0.5, 0.75],
+          [0, 0.75, 1.0],
+          [0, 0.8, 0.81],
+        ]);
+       var options = {cht: 'bhs', chs:'3050x50', chd: 't:70', chbh: '30'}; // , chco:{['ff0000', 'ffff00', '00A000', '000000']}
+
+        var chart = new google.visualization.ImageChart(document.getElementById('chart_div'));
+        chart.draw(dataTable, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
