@@ -18,7 +18,10 @@
         var options = {
           width: 1000,
           height: 600,
-          title: 'Company Performance'
+          title: 'Company Performance',
+        //   bar: {
+        //     groupWidth: 50
+        //   }
         }
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, options);
