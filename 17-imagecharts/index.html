@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // https://developers.google.com/chart/interactive/docs/gallery/genericimagechart#line-chart
+      google.charts.load('current', { 'packages': ['imagechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('string');  //, 'Month');
+        dataTable.addColumn('number');  //, 'Score');
+        dataTable.addColumn('string');  //, 'Note');
+        dataTable.addRows([
+          ['January', 40, undefined],
+          ['February', 60, 'Initial recall'],
+          ['March', 60, 'Product withdrawn'],
+          ['April', 45, undefined],
+          ['May', 47, 'Relaunch'],
+          ['June', 75, undefined],
+          ['July', 70, undefined],
+          ['August', 72, undefined]
+        ]);
+       var options = {cht: 'lc', chds:'0,160', annotationColumns:[{column:2, size:12, type:'flag', priority:'high'},]};
+
+        var chart = new google.visualization.ImageChart(document.getElementById('chart_div'));
+        chart.draw(dataTable, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
