@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+     google.charts.load('upcoming', {'packages': ['geochart']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     // Source https://medium.com/@hoffa/hillary-only-needed-to-switch-53-650-voters-to-win-94940ff263b7#.oqgkubwxy
+     // https://docs.google.com/spreadsheets/d/1DCmKzoOlvbJP4mCMXlvqq2gQqpz-8dm9hpTmTUtavzY/edit#gid=0
+      function drawChart() {
+      var d = [
+        ['State', 'How extreme'],
+        ['Alabama', 588841 / 2025009],
+        ['Alaska', 37408 / 223422],
+        ['Arizona', 83511 / 1950821],
+        ['Arkansas', 299175 / 1056633],
+        ['California', -2568841 / 8611031],
+        ['Colorado', -71741 / 2344449],
+        ['Connecticut', -185441 / 1461279],
+        ['Delaware', -50478 / 420684],
+        ['District of Columbia', -248670 / 271776],
+        ['Florida', 119770 / 9091260],
+        ['Georgia', 231323 / 3905923],
+        ['Hawaii', -130205 / 373501],
+        ['Idaho', 217522 / 596876],
+        ['Illinois', -859319 / 5095677],
+        ['Indiana', 524267 / 2588173],
+        ['Iowa', 148133 / 1449713],
+        ['Kansas', 241221 / 1070797],
+        ['Kentucky', 574108 / 1831776],
+        ['Louisiana', 398469 / 1957539],
+        ['Maine', -20035 / 689711],
+        ['Maryland', -624305 / 2371597],
+        ['Massachusetts', -881699 / 3047837],
+        ['Michigan', 11423 / 4547019],
+        ['Minnesota', -43785 / 2689567],
+        ['Mississippi', 216456 / 1140458],
+        ['Missouri', 530864 / 2640642],
+        ['Montana', 99599 / 448641],
+        ['Nebraska', 211961 / 759677],
+        ['Nevada', -26434 / 1049072],
+        ['New Hampshire', -2732 / 694310],
+        ['New Jersey', -486243 / 3557269],
+        ['New Mexico', -64849 / 696599],
+        ['New York', -1503304 / 6784444],
+        ['North Carolina', 177529 / 4501677],
+        ['North Dakota', 122607 / 309659],
+        ['Ohio', 454983 / 5088985],
+        ['Oklahoma', 528146 / 1367722],
+        ['Oregon', -192125 / 1677137],
+        ['Pennsylvania', 68236 / 5757646],
+        ['Rhode Island', -70481 / 429323],
+        ['South Carolina', 294142 / 1993080],
+        ['South Dakota', 110259 / 345143],
+        ['Tennessee', 650292 / 2384512],
+        ['Texas', 813774 / 8549406],
+        ['Utah', 159763 / 634245],
+        ['Vermont', -83067 / 273167],
+        ['Virginia', -185689 / 3648001],
+        ['Washington', -414224 / 2315644],
+        ['West Virginia', 298741 / 673655],
+        ['Wisconsin', 27257 / 2791677],
+        ['Wyoming', 118299 / 230197]
+      ];
+      var data = google.visualization.arrayToDataTable(d);
+
+      var options = {
+        region: 'US',
+        resolution: 'provinces',
+        colorAxis: {colors: ['red', 'blue']}
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+
+      var d2 = [];
+      d.forEach(function(row) {
+        d2.push([row[0], d2.length ? Math.abs(row[1]) : 'How Close']);
+      });
+      var data2 = google.visualization.arrayToDataTable(d2);
+      var options2 = {
+        region: 'US',
+        resolution: 'provinces',
+        colorAxis: {colors: ['yellow', 'green']}
+      };
+      var chart2 = new google.visualization.GeoChart(document.getElementById('chart_div2'));
+      chart2.draw(data2, options2);
+    };
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+    <div id="chart_div2"></div>
+  </body>
+</html>
