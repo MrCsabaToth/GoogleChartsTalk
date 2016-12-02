@@ -65,9 +65,10 @@
       var data = google.visualization.arrayToDataTable(d);
 
       var options = {
+        title: 'Polarized bias per state',
         region: 'US',
         resolution: 'provinces',
-        colorAxis: {colors: ['red', 'blue']}
+        colorAxis: {colors: ['blue', 'red']}
       };
 
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
@@ -79,6 +80,7 @@
       });
       var data2 = google.visualization.arrayToDataTable(d2);
       var options2 = {
+        title: 'Absolute (positive) bias per state',
         region: 'US',
         resolution: 'provinces',
         colorAxis: {colors: ['yellow', 'green']}
