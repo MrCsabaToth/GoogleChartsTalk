@@ -21,7 +21,12 @@
           ['Eric', 1500]
         ]);
 
-        var options = { legend: { position: 'top' } };
+        var options = {
+          legend: {
+            position: 'top'
+          },
+          isStacked: true
+        };
 
         var chart = new google.visualization.BarChart(document.getElementById("chart_div"));
         var diffData = chart.computeDiff(oldData, newData);
