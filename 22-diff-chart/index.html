@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var oldData = google.visualization.arrayToDataTable([
+          ['Name', 'Popularity'],
+          ['Cesar', 250],
+          ['Rachel', 4200],
+          ['Patrick', 2900],
+          ['Eric', 8200]
+        ]);
+    
+        var newData = google.visualization.arrayToDataTable([
+          ['Name', 'Popularity'],
+          ['Cesar', 370],
+          ['Rachel', 600],
+          ['Patrick', 700],
+          ['Eric', 1500]
+        ]);
+
+        var options = { legend: { position: 'top' } };
+
+        var chart = new google.visualization.BarChart(document.getElementById("chart_div"));
+        var diffData = chart.computeDiff(oldData, newData);
+
+        chart.draw(diffData, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
