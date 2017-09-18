@@ -21,7 +21,10 @@
           width: 1000,
           height: 600,
           title: 'Company Performance',
-          //hAxis: { slantedText: true }
+          hAxis: {
+            slantedText: true,
+            slantedTextAngle: 15  // https://stackoverflow.com/questions/786789/vertical-labels-with-google-charts-api
+          }
         }
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(dataTable, options);
