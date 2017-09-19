@@ -5,21 +5,19 @@
       google.charts.load('current', { 'packages': ['corechart'] });
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var oldData = google.visualization.arrayToDataTable([
-          ['Name', 'Popularity'],
-          ['Cesar', 250],
-          ['Rachel', 4200],
-          ['Patrick', 2900],
-          ['Eric', 8200]
-        ]);
-    
-        var newData = google.visualization.arrayToDataTable([
-          ['Name', 'Popularity'],
-          ['Cesar', 370],
-          ['Rachel', 600],
-          ['Patrick', 700],
-          ['Eric', 1500]
-        ]);
+        var diffData = new google.visualization.DataTable({
+          "cols": [
+            {"type": "string", "id": "Title", "label": "Name"},
+            {"type": "number", "id": "Count", "label": "Popularity", "p": {"role": "old-data"}},
+            {"type": "number", "id": "Count", "label": "Popularity", "p": {"role": "data"}}
+          ],
+          "rows" : [
+            {"c": [{"v": "Cesar"}, {"v": 250}, {"v": 370}]},
+            {"c": [{"v": "Rachel"}, {"v": 4200}, {"v": 600}]},
+            {"c": [{"v": "Patrick"}, {"v": 2900}, {"v": 700}]},
+            {"c": [{"v": "Eric"}, {"v": 8200}, {"v": 1500}]}
+          ]
+        });
 
         var options = {
           legend: {
@@ -37,12 +35,10 @@
               }
             }
           },
-          isStacked: true,
-          colors: ['#0000ff', '#00ff00']
+          isStacked: true
         };
 
         var chart = new google.visualization.BarChart(document.getElementById("chart_div"));
-        var diffData = chart.computeDiff(oldData, newData);
 
         chart.draw(diffData, options);
       }
