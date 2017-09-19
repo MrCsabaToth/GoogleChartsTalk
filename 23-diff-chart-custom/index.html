@@ -9,13 +9,15 @@
           "cols": [
             {"type": "string", "id": "Title", "label": "Name"},
             {"type": "number", "id": "Count", "label": "Popularity", "p": {"role": "old-data"}},
-            {"type": "number", "id": "Count", "label": "Popularity", "p": {"role": "data"}}
+            {"type": 'string', "id": "Style", "label": "Style", "p": {"role": "style"}},
+            {"type": "number", "id": "Count", "label": "Popularity", "p": {"role": "data"}},
+            {"type": 'string', "id": "Style", "label": "Style", "p": {"role": "style"}}
           ],
           "rows" : [
-            {"c": [{"v": "Cesar"}, {"v": 250}, {"v": 370}]},
-            {"c": [{"v": "Rachel"}, {"v": 4200}, {"v": 600}]},
-            {"c": [{"v": "Patrick"}, {"v": 2900}, {"v": 700}]},
-            {"c": [{"v": "Eric"}, {"v": 8200}, {"v": 1500}]}
+            {"c": [{"v": "Cesar"}, {"v": 250}, {"v": "color: #0000ff"}, {"v": 370}, {"v": "color: #1a9e77"}]},
+            {"c": [{"v": "Rachel"}, {"v": 4200}, {"v": "color: #0000ff"}, {"v": 600}, {"v": "color: #f4b400"}]},
+            {"c": [{"v": "Patrick"}, {"v": 2900}, {"v": "color: #0000ff"}, {"v": 700}, {"v": "color: #aaaaaa"}]},
+            {"c": [{"v": "Eric"}, {"v": 8200}, {"v": "color: #0000ff"}, {"v": 1500}, {"v": "color: #00ff00"}]}
           ]
         });
 
@@ -33,7 +35,8 @@
               tooltip: {
                 prefix: 'Label 2'
               }
-            }
+            },
+            color: ['#aaaaaa']
           },
           isStacked: true
         };
