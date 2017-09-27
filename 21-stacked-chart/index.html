@@ -16,7 +16,10 @@
         var options = {
           width: 600,
           height: 400,
-          legend: { position: 'top', maxLines: 3 },
+          legend: {
+            position: 'top',
+            maxLines: 3  // <- nice trick: https://stackoverflow.com/questions/12745229/how-the-legends-on-google-charts-can-be-wrapped
+          },
           bar: { groupWidth: '75%' },
           //hAxis: {minValue: -10},
           isStacked: true
