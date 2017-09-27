@@ -9,12 +9,14 @@
         dataTable.addColumn('string', 'Galaxy');
         dataTable.addColumn('number', 'Distance');
         dataTable.addColumn('number', 'Brightness');
+        dataTable.addColumn('number', 'Brightness 2');
+        dataTable.addColumn('number', 'Distance 2');
         dataTable.addRows([
-          ['Canis Major Dwarf', 8000, 23.3],
-          ['Sagittarius Dwarf', 24000, 4.5],
-          ['Ursa Major II Dwarf', 30000, 14.3],
-          ['Lg. Magellanic Cloud', 50000, 0.9],
-          ['Bootes I', 60000, 13.1]
+          ['Canis Major Dwarf', 8000, 23.3, 13.1, 8500],
+          ['Sagittarius Dwarf', 24000, 4.5, 9, 20000],
+          ['Ursa Major II Dwarf', 30000, 14.3, 12, 35000],
+          ['Lg. Magellanic Cloud', 50000, 0.9, 3, 40000],
+          ['Bootes I', 60000, 13.1, 20, 45000]
         ]);
         var options = {
           width: 1000,
@@ -25,7 +27,9 @@
           },
           series: {
             0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+            1: { axis: 'brightness' }, // Bind series 1 to an axis named 'brightness'.
+            2: { axis: 'brightness' }, // Bind series 2 to an axis named 'brightness'.
+            3: { axis: 'distance' }, // Bind series 3 to an axis named 'distance'.
           },
           axes: {
             y: {
