@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart', 'bar', 'line'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('date', 'Metric');
+        dataTable.addColumn('number', 'BL to RL (F) Blueline to Redline Forwards #1');
+        // dataTable.addColumn('number', "BL to RL (F) Blueline to Redline Forwards #1 Event's Birth Year Best for 1999");
+        // dataTable.addColumn('number', "BL to RL (F) Blueline to Redline Forwards #1 Event's Birth Year Avg for 1999");
+  
+        dataTable.addRows([
+          [{v: new Date(2014, 1, 21), f: "Start of year Testing '13-'14"}, {v: 1.96, f: "1.96 sec"}], //1.96, 1.96],
+          [{v: new Date(2014, 6, 6), f: "End of Year Evaluations '13-'14"}, {v: 1.8319999999999999, f: "1.832 sec"}], //1.8319999999999999, 1.832],
+          [{v: new Date(2014, 7, 25), f: "2014 Week 3"}, {v: 2.048, f: "2.048 sec"}], //1.8319999999999999, 2.12],
+          [{v: new Date(2015, 1, 23), f: "Mid Year Testing '14-'15"}, {v: 1.766, f: "1.766 sec"}], //1.766, 1.77],
+          [{v: new Date(2015, 5, 28), f: "End of Year Evaluations '14-'15"}, {v: 1.716, f: "1.716 sec"}], //1.716, 1.72],
+        ]);
+  
+        var options = {
+          width: 1000,
+          height: 600,
+          chart: {
+            title: null  // title
+          },
+          hAxis: {
+            slantedText: true,
+            slantedTextAngle: 15,
+            textStyle: {
+              bold: true
+            }
+          },
+          vAxis: {
+            format: 'decimal',
+            textStyle: {
+              bold: true
+            }
+          },
+          legend: {
+            position: 'right',
+            maxLines: 50
+          },
+          legendTextStyle: {
+            bold: true
+          },
+          titleTextStyle: {
+            bold: true
+          },
+          pointSize: 8,
+          annotations: {
+            alwaysOutside: true,
+            highContrast: true,  // default is true, but be sure
+            textStyle: {
+              bold: true
+            }
+          },
+          crosshair: { trigger: "both", orientation: "both" },
+          trendlines: {
+            0: {
+              pointSize: 1,
+              type: 'linear',
+              visibleInLegend: true
+            }
+          }
+        }
+        var $chartDiv = $('#chart_div');
+        var chart = new google.visualization.LineChart($chartDiv[0]);
+        google.visualization.events.addListener(chart, 'ready', function () {
+          // Step 1: get equation
+          var equationStr = null;
+          $('#chart_div text').each(function(ind1, elem1) {
+            var $elem1 = $(elem1);
+            var contentStr = $elem1.text();
+            if (contentStr.startsWith('y =')) {
+              equationStr = contentStr;
+              // Check if the label is wrapped to multiple lines
+              var $siblings = $elem1.siblings();
+              if ($siblings.length > 0) {
+                $siblings.each(function (ind2, elem2) {
+                  equationStr += $(elem2).text();
+                });
+              }
+            }
+          });
+          console.log(equationStr);
+          // Double check if we got the whole equation
+          if (!equationStr.endsWith('…')) {
+            // Example: y = -5.261E-4 * x + 23.92
+            var leftSide = equationStr.split('=')[1];
+            var equParts = leftSide.split('*');
+            var slope = Number(equParts[0]);
+            console.log('slope ' + slope);
+            var endParts = equParts[1].split('x');
+            var constant = Number(endParts[1].replace(/ /g, ''));
+            console.log('constant ' + constant);
+            // Step 2: use getChartAreaBoundingBox
+            var cli = chart.getChartLayoutInterface();
+            var bb = cli.getChartAreaBoundingBox();
+            console.log('bound left ' + bb.left);
+            console.log('bound width ' + bb.width);
+            var beginX = cli.getHAxisValue(bb.left);
+            var endX = cli.getHAxisValue(bb.left + bb.width);
+            console.log('beginX ' + beginX);
+            console.log('endX ' + endX);
+            // var beginXLoc = cli.getXLocation(bb.left);
+            // var endXLoc = cli.getXLocation(bb.left + bb.width);
+            // console.log('beginXLoc ' + beginX);
+            // console.log('endXLoc ' + endX);
+            // Step 3: compute
+            var beginY = slope * beginX + constant;
+            var endY = slope * endX + constant;
+            var change = (endY - beginY) / beginY;
+            console.log('beginY ' + beginY);
+            console.log('endY ' + endY);
+            console.log('change ' + change);
+          }
+        });
+        chart.draw(dataTable, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
