@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart', 'bar'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,    400],
+          ['2005',  1170,    460],
+          ['2006',   660,   1120],
+          ['2007',  1030,    540],
+          ['2009',  1120,    580],
+          ['2010',  1200,    500],
+          ['2011',  1250,    490],
+        ]);
+        var options = {
+          width: 1000,
+          height: 600,
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017'
+          },
+          // Accepts also 'rgb(255, 0, 0)' format but not rgba(255, 0, 0, 0.2),
+          // for that use fillOpacity versions
+          // Colors only the chart area, simple version
+          // chartArea: {
+          //   backgroundColor: '#FF0000'
+          // },
+          // Colors only the chart area, with opacity
+          chartArea: {
+            backgroundColor: {
+              fill: '#FF0000',
+              fillOpacity: 0.1
+            },
+          },
+          // Colors the entire chart area, simple version
+          // backgroundColor: '#FF0000',
+          // Colors the entire chart area, with opacity
+          backgroundColor: {
+            fill: '#FF0000',
+            fillOpacity: 0.8
+          },
+        }
+
+        var classicChart = new google.visualization.BarChart(document.getElementById('classic_div'));
+        classicChart.draw(data, options);
+
+        var meterialChart = new google.charts.Bar(document.getElementById('material_div'));
+        meterialChart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="classic_div"></div>
+    <div id="material_div"></div>
+  </body>
+</html>

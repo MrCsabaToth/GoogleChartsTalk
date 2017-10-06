@@ -38,7 +38,7 @@
             }
           }
         }
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));  // Dual axis only works with material charts, not with classic!
         chart.draw(dataTable, options);
       }
     </script>
