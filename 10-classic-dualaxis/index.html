@@ -2,7 +2,7 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', { 'packages': ['bar'] });
+      google.charts.load('current', { 'packages': ['corechart', 'line', 'bar'] });
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var dataTable = new google.visualization.DataTable();
@@ -26,19 +26,13 @@
             subtitle: 'distance on the left, brightness on the right'
           },
           series: {
-            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-            1: { axis: 'brightness' }, // Bind series 1 to an axis named 'brightness'.
-            2: { axis: 'brightness' }, // Bind series 2 to an axis named 'brightness'.
-            3: { axis: 'distance' }, // Bind series 3 to an axis named 'distance'.
+            0: { targetAxisIndex: 0 },
+            1: { targetAxisIndex: 1 },
+            2: { targetAxisIndex: 1 },
+            3: { targetAxisIndex: 0 },
           },
-          axes: {
-            y: {
-              distance: {label: 'parsecs'}, // Left y-axis.
-              brightness: {side: 'right', label: 'apparent magnitude'} // Right y-axis.
-            }
-          }
         }
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));  // Dual axis only works with material charts, not with classic!
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(dataTable, options);
       }
     </script>
